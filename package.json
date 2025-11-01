@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "0nis",
-  "license": "",
+  "license": "GPL-3.0",
   "devDependencies": {
     "@types/chrome": "^0.1.24",
     "@types/firefox-webext-browser": "^143.0.0",
