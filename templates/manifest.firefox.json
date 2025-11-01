@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://archiveofourown.org/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ao3-word-replacer@0nis",
+      "strict_min_version": "91.0"
+    }
+  }
+}

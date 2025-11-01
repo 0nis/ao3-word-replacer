@@ -1,0 +1,64 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.cache/
+.pnp.*
+/dist/
+/build/
+/out/
+lib/
+temp/
+tmp/
+
+# Environment / secrets
+.env
+.env.*.local
+.env.local
+.env.test.local
+.env.production.local
+secrets.* 
+*.secret
+
+# Chrome Extension packaging / keys
+*.crx
+*.zip
+key.pem
+*.pem
+packaged/
+release/
+.*/packed/
+
+# Logs & coverage
+logs/
+*.log
+coverage/
+coverage-final.json
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# Build artifacts / caches
+.cache/
+.cache-loader/
+.next/
+.nuxt/
+dist-*/
+build-*/
+
+# Misc
+*.tgz
+*.bak
+*.tmp
