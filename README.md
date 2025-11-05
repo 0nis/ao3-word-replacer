@@ -1,6 +1,6 @@
 # AO3 Word Replacer
 
-AO3 Word Replacer is a browser extension that lets you create and manage a list of words to automatically replace in AO3 fanfiction text.
+AO3 Word Replacer is a browser extension that lets you create and manage a list of words to automatically replace in fanfiction written on [Archive of Our Own (AO3)](https://archiveofourown.org/).
 
 **Features:**
 
@@ -12,7 +12,25 @@ AO3 Word Replacer is a browser extension that lets you create and manage a list 
 
 ## Installation
 
-[TBD]
+You can install AO3 Word Replacer from the following links:
+
+- **Chrome, Edge, and other Chromium-based browsers**: Available on the [Chrome Web Store](https://chromewebstore.google.com/detail/ao3-word-replacer/kghjcphgefocbonemjdigcapfkocajgh?authuser=0&hl=en-GB).
+- **Firefox**: Available on [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/ao3-word-replacer/).
+
+To use this extension on mobile, use a browser that supports extensions, such as:
+
+- Firefox
+- Microsoft Edge
+- Yandex Browser
+- Kiwi Browser
+- Mises Browser
+- Lemur Browser
+- Quetta Browser
+- Iceraven
+- Fennec
+- IronFox
+
+If you experience any issues or have feature requests, feel free to open an issue on the [GitHub issues tab](https://github.com/0nis/ao3-word-replacer/issues).
 
 ## Usage
 
@@ -80,12 +98,12 @@ If you want to build the extension yourself, follow these steps:
    **Chrome/Edge**:
 
    1. Go to `chrome://extensions/`
-   2. Enable **Developer Mode**
-   3. Click **Load Unpacked**
+   2. Enable `Developer Mode`
+   3. Click `Load Unpacked`
    4. Select the relevant output folder within `dist`
 
    **Firefox**:
 
-   1. Go to `about:debugging#/runtime/this-firefox`
-   2. Click **Load Temporary Add-on**
-   3. Select the `manifest.json` in the relevant output folder within `dist`
+   5. Go to `about:debugging#/runtime/this-firefox`
+   6. Click `Load Temporary Add-on`
+   7. Select the `manifest.json` in the relevant output folder within `dist`
