@@ -2,7 +2,7 @@ export function createOverlay(): HTMLDivElement {
   const overlay = document.createElement("div");
   overlay.id = "wordReplacerOverlay";
   overlay.className = "word-replacer__overlay";
-  overlay.classList.add("hidden");
+  overlay.classList.add("word-replacer__hidden");
   return overlay;
 }
 
@@ -13,7 +13,7 @@ export function createModal(): HTMLDivElement {
   modal.setAttribute("role", "dialog");
   modal.setAttribute("aria-modal", "true");
   modal.setAttribute("aria-labelledby", "wordReplacerHeading");
-  modal.classList.add("hidden");
+  modal.classList.add("word-replacer__hidden");
 
   modal.innerHTML = `
     <div class="word-replacer__header">

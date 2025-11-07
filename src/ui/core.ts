@@ -37,13 +37,13 @@ export const UI = {
 };
 
 function open(): void {
-  state.modal!.classList.remove("hidden");
-  state.overlay!.classList.remove("hidden");
+  state.modal!.classList.remove("word-replacer__hidden");
+  state.overlay!.classList.remove("word-replacer__hidden");
   state.focusTrap?.activate();
 }
 
 function close(): void {
-  state.modal!.classList.add("hidden");
-  state.overlay!.classList.add("hidden");
+  state.modal!.classList.add("word-replacer__hidden");
+  state.overlay!.classList.add("word-replacer__hidden");
   state.focusTrap?.deactivate();
 }

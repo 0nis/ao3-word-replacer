@@ -57,7 +57,7 @@ export function addModalStyles(): void {
     .word-replacer__table td:nth-child(2) {
       min-width: 120px;
     }
-    .hidden {
+    .word-replacer__hidden {
       display: none !important;
     }
   `;
