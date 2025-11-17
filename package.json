@@ -1,7 +1,7 @@
 {
   "name": "ao3-word-replacer",
   "displayName": "AO3 Word Replacer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Replace words in AO3 fics with per-entry options",
   "main": "index.js",
   "type": "module",
