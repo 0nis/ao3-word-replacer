@@ -59,12 +59,21 @@ export function processTextNode(node: Text, dict: Dictionary): void {
     if (!Object.prototype.hasOwnProperty.call(dict, id)) continue;
 
     const entry: DictionaryEntry = { ...DEFAULT_OPTIONS, ...dict[id] };
-    const { target, replacement, caseSensitive, wholeWord, preserveCase } =
-      entry;
+    const {
+      target,
+      replacement,
+      caseSensitive,
+      wholeWord,
+      preserveCase,
+      matchVariants,
+    } = entry;
 
     if (typeof target !== "string" || typeof replacement !== "string") continue;
 
-    const patternSource = buildVariantPattern(target);
+    const patternSource = matchVariants
+      ? buildVariantPattern(target)
+      : escapeRegExp(target);
+
     let flags = "g";
     if (!caseSensitive) flags += "i";
 

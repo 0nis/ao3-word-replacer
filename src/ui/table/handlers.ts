@@ -23,7 +23,7 @@ export function removeWordHandler(state: State, target: HTMLElement): void {
 }
 
 export function extractRowData(
-  row: HTMLTableRowElement
+  row: HTMLTableRowElement,
 ): [string, DictionaryEntry] | null {
   const key = row.getAttribute("data-key");
   if (!key) return null;
@@ -59,5 +59,6 @@ function extractEntryFromRow(row: HTMLTableRowElement): DictionaryEntry | null {
     caseSensitive: getCheckboxValue(row, "caseSensitive"),
     wholeWord: getCheckboxValue(row, "wholeWord"),
     preserveCase: getCheckboxValue(row, "preserveCase"),
+    matchVariants: getCheckboxValue(row, "matchVariants"),
   };
 }

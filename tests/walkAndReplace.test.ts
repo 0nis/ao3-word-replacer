@@ -11,6 +11,7 @@ const defaultDict: Dictionary = {
     preserveCase: false,
     caseSensitive: false,
     wholeWord: false,
+    matchVariants: false,
   },
   world: {
     target: "world",
@@ -18,6 +19,7 @@ const defaultDict: Dictionary = {
     preserveCase: false,
     caseSensitive: false,
     wholeWord: false,
+    matchVariants: false,
   },
 };
 
@@ -35,7 +37,7 @@ test("replaces all text nodes in a simple container", () => {
 
 test("replaces text nodes inside nested elements", () => {
   const container = createContainer(
-    "<div><p>Hello</p><span>world</span></div>"
+    "<div><p>Hello</p><span>world</span></div>",
   );
   walkAndReplace(container, defaultDict);
   expect(container.innerHTML).toBe("<div><p>Hi</p><span>Earth</span></div>");

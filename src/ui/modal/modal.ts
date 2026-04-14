@@ -32,6 +32,7 @@ export function createModal(): HTMLDivElement {
             <th>Match Case</th>
             <th>Whole Word</th>
             <th>Preserve Case</th>
+            <th>Match Variants</th>
             <th>Remove</th>
           </tr>
         </thead>

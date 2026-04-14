@@ -6,6 +6,7 @@ export const DEFAULT_OPTIONS: Options = {
   caseSensitive: false,
   wholeWord: true,
   preserveCase: true,
+  matchVariants: true,
 };
 
 export const DEFAULT_DICTIONARY: Dictionary = {};

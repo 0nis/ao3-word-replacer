@@ -12,6 +12,7 @@ const baseSettings = {
   caseSensitive: false,
   wholeWord: false,
   preserveCase: false,
+  matchVariants: false,
 };
 
 test("default replacement (all options false)", () => {
@@ -31,9 +32,8 @@ test("caseSensitive true should only match exact case", () => {
   const dict: Dictionary = {
     test: {
       ...baseEntry,
+      ...baseSettings,
       caseSensitive: true,
-      wholeWord: false,
-      preserveCase: false,
     },
   };
   processTextNode(node, dict);
@@ -45,9 +45,8 @@ test("wholeWord true should only match standalone words", () => {
   const dict: Dictionary = {
     test: {
       ...baseEntry,
-      caseSensitive: false,
+      ...baseSettings,
       wholeWord: true,
-      preserveCase: false,
     },
   };
   processTextNode(node, dict);
@@ -59,8 +58,7 @@ test("preserveCase true should match case of original text", () => {
   const dict: Dictionary = {
     test: {
       ...baseEntry,
-      caseSensitive: false,
-      wholeWord: false,
+      ...baseSettings,
       preserveCase: true,
     },
   };
@@ -73,9 +71,11 @@ test("combined options apply correctly with all flags enabled", () => {
   const dict: Dictionary = {
     test: {
       ...baseEntry,
+      ...baseSettings,
       caseSensitive: true,
       wholeWord: true,
       preserveCase: true,
+      matchVariants: true,
     },
   };
   processTextNode(node, dict);
@@ -107,9 +107,8 @@ test("multi-word targets match correctly with wholeWord enabled", () => {
     test: {
       target: "foo bar",
       replacement: "bar",
-      caseSensitive: false,
+      ...baseSettings,
       wholeWord: true,
-      preserveCase: false,
     },
   };
   processTextNode(node, dict);
