@@ -129,7 +129,7 @@ test("regex-special characters in target are matched correctly", () => {
   expect(node.nodeValue).toBe("foo bar bar foo");
 });
 
-test("apostrophe normalization matches unicode variants", () => {
+test("matches apostrophe variants in target", () => {
   const node = createTextNode("foon't foon‘t foon’t");
   const dict: Dictionary = {
     test: {
