@@ -8,15 +8,18 @@ function createTextNode(value: string): Text {
 }
 
 const baseEntry = { target: "foo", replacement: "bar" };
+const baseSettings = {
+  caseSensitive: false,
+  wholeWord: false,
+  preserveCase: false,
+};
 
 test("default replacement (all options false)", () => {
   const node = createTextNode("foo foofoo");
   const dict: Dictionary = {
     test: {
       ...baseEntry,
-      caseSensitive: false,
-      wholeWord: false,
-      preserveCase: false,
+      ...baseSettings,
     },
   };
   processTextNode(node, dict);
@@ -65,7 +68,7 @@ test("preserveCase true should match case of original text", () => {
   expect(node.nodeValue).toBe("bar BAR Bar bAr");
 });
 
-test("combined options: caseSensitive + wholeWord + preserveCase", () => {
+test("combined options apply correctly with all flags enabled", () => {
   const node = createTextNode("foo Foo foofoo FOO");
   const dict: Dictionary = {
     test: {
@@ -84,23 +87,21 @@ test("empty text node should remain unchanged", () => {
   const dict: Dictionary = {
     test: {
       ...baseEntry,
-      caseSensitive: false,
-      wholeWord: false,
-      preserveCase: false,
+      ...baseSettings,
     },
   };
   processTextNode(node, dict);
   if (node.nodeValue !== "") throw new Error(`got: ${node.nodeValue}`);
 });
 
-test("non-string target/replacement ignored", () => {
+test("non-string target/replacement should be ignored", () => {
   const node = createTextNode("foo");
   const dict: any = { test: { target: 123, replacement: null } };
   processTextNode(node, dict);
   expect(node.nodeValue).toBe("foo");
 });
 
-test("space in target with wholeWord option", () => {
+test("multi-word targets match correctly with wholeWord enabled", () => {
   const node = createTextNode("foo bar foo");
   const dict: Dictionary = {
     test: {
@@ -115,17 +116,28 @@ test("space in target with wholeWord option", () => {
   expect(node.nodeValue).toBe("bar foo");
 });
 
-test("special characters in target", () => {
+test("regex-special characters in target are matched correctly", () => {
   const node = createTextNode("foo foo-foo/bar bar foo");
   const dict: Dictionary = {
     test: {
       target: "foo-foo/bar",
       replacement: "bar",
-      caseSensitive: false,
-      wholeWord: false,
-      preserveCase: false,
+      ...baseSettings,
     },
   };
   processTextNode(node, dict);
   expect(node.nodeValue).toBe("foo bar bar foo");
+});
+
+test("apostrophe normalization matches unicode variants", () => {
+  const node = createTextNode("foon't foon‘t foon’t");
+  const dict: Dictionary = {
+    test: {
+      target: "foon't",
+      replacement: "foo",
+      ...baseSettings,
+    },
+  };
+  processTextNode(node, dict);
+  expect(node.nodeValue).toBe("foo foo foo");
 });
