@@ -6,6 +6,7 @@ import {
 } from "../utils/string.js";
 import type { Dictionary, DictionaryEntry } from "../types/settings.js";
 import { DEFAULT_OPTIONS } from "../constants/settings.js";
+import { buildVariantPattern } from "./normalization.js";
 
 /**
  * Transfers capitalization patterns from the original string to the replacement.
@@ -63,24 +64,24 @@ export function processTextNode(node: Text, dict: Dictionary): void {
 
     if (typeof target !== "string" || typeof replacement !== "string") continue;
 
-    const escaped = escapeRegExp(target);
+    const patternSource = buildVariantPattern(target);
     let flags = "g";
     if (!caseSensitive) flags += "i";
 
     if (wholeWord) {
-      const pattern = `(^|[^A-Za-z0-9_])(${escaped})(?=$|[^A-Za-z0-9_])`;
+      const pattern = `(^|[^A-Za-z0-9_])(${patternSource})(?=$|[^A-Za-z0-9_])`;
       const regex = new RegExp(pattern, flags);
 
       text = text.replace(
         regex,
         (full, p1: string, p2: string) =>
-          p1 + (preserveCase ? transferCase(p2, replacement) : replacement)
+          p1 + (preserveCase ? transferCase(p2, replacement) : replacement),
       );
     } else {
-      const regex = new RegExp(escaped, flags);
+      const regex = new RegExp(patternSource, flags);
 
       text = text.replace(regex, (match: string) =>
-        preserveCase ? transferCase(match, replacement) : replacement
+        preserveCase ? transferCase(match, replacement) : replacement,
       );
     }
   }
@@ -99,7 +100,7 @@ export function walkAndReplace(container: Element, dict: Dictionary): void {
   const walker = document.createTreeWalker(
     container,
     NodeFilter.SHOW_TEXT,
-    null
+    null,
   );
 
   let node: Text | null;
