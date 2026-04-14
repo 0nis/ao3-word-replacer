@@ -1,4 +1,4 @@
-export const NORMALIZATION_MAP: Record<string, string[]> = {
+export const CHARACTER_VARIANTS: Record<string, string[]> = {
   // Apostrophes
   "'": [
     "\u0027", // '

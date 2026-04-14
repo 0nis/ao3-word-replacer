@@ -1,3 +1,4 @@
+import { buildVariantPattern } from "./pattern.js";
 import {
   escapeRegExp,
   isAllLower,
@@ -6,7 +7,6 @@ import {
 } from "../utils/string.js";
 import type { Dictionary, DictionaryEntry } from "../types/settings.js";
 import { DEFAULT_OPTIONS } from "../constants/settings.js";
-import { buildVariantPattern } from "./normalization.js";
 
 /**
  * Transfers capitalization patterns from the original string to the replacement.
