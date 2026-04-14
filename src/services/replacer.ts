@@ -1,3 +1,4 @@
+import { buildVariantPattern } from "./pattern.js";
 import {
   escapeRegExp,
   isAllLower,
@@ -58,29 +59,38 @@ export function processTextNode(node: Text, dict: Dictionary): void {
     if (!Object.prototype.hasOwnProperty.call(dict, id)) continue;
 
     const entry: DictionaryEntry = { ...DEFAULT_OPTIONS, ...dict[id] };
-    const { target, replacement, caseSensitive, wholeWord, preserveCase } =
-      entry;
+    const {
+      target,
+      replacement,
+      caseSensitive,
+      wholeWord,
+      preserveCase,
+      matchVariants,
+    } = entry;
 
     if (typeof target !== "string" || typeof replacement !== "string") continue;
 
-    const escaped = escapeRegExp(target);
+    const patternSource = matchVariants
+      ? buildVariantPattern(target)
+      : escapeRegExp(target);
+
     let flags = "g";
     if (!caseSensitive) flags += "i";
 
     if (wholeWord) {
-      const pattern = `(^|[^A-Za-z0-9_])(${escaped})(?=$|[^A-Za-z0-9_])`;
+      const pattern = `(^|[^A-Za-z0-9_])(${patternSource})(?=$|[^A-Za-z0-9_])`;
       const regex = new RegExp(pattern, flags);
 
       text = text.replace(
         regex,
         (full, p1: string, p2: string) =>
-          p1 + (preserveCase ? transferCase(p2, replacement) : replacement)
+          p1 + (preserveCase ? transferCase(p2, replacement) : replacement),
       );
     } else {
-      const regex = new RegExp(escaped, flags);
+      const regex = new RegExp(patternSource, flags);
 
       text = text.replace(regex, (match: string) =>
-        preserveCase ? transferCase(match, replacement) : replacement
+        preserveCase ? transferCase(match, replacement) : replacement,
       );
     }
   }
@@ -99,7 +109,7 @@ export function walkAndReplace(container: Element, dict: Dictionary): void {
   const walker = document.createTreeWalker(
     container,
     NodeFilter.SHOW_TEXT,
-    null
+    null,
   );
 
   let node: Text | null;

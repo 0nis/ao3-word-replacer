@@ -16,10 +16,10 @@ export function renderTable(state: State): void {
 
     row.innerHTML = `
       <td><input type="text" name="target" value="${escapeHtml(
-        entry.target
+        entry.target,
       )}"></td>
       <td><input type="text" name="replacement" value="${escapeHtml(
-        entry.replacement
+        entry.replacement,
       )}"></td>
       <td style="text-align:center"><input type="checkbox" name="caseSensitive" ${
         entry.caseSensitive ? "checked" : ""
@@ -29,6 +29,9 @@ export function renderTable(state: State): void {
       }></td>
       <td style="text-align:center"><input type="checkbox" name="preserveCase" ${
         entry.preserveCase ? "checked" : ""
+      }></td>
+      <td style="text-align:center"><input type="checkbox" name="matchVariants" ${
+        entry.matchVariants ? "checked" : ""
       }></td>
       <td style="text-align:center"><button type="button" class="removeBtn word-replacer__btn" aria-label="Remove this row">X</button></td>
     `;
